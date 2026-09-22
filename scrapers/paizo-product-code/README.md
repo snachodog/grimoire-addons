@@ -41,6 +41,7 @@ distinction exists.
 
 | Field | Filled? | Notes |
 | --- | --- | --- |
+| `title` | Yes | The product's own name, exactly as store.paizo.com titles it — same convention the official DriveThruRPG add-on uses (the source's own title, not a cleaned-up guess). Some product names include the source's own format tag, e.g. "... (OGL) PDF"; left as-is rather than stripped. |
 | Product code | via `tags` | See "Product code field" below — the real field has not shipped yet. |
 | `publisher` | Always `Paizo Inc.` | store.paizo.com sells only Paizo's own first-party line, so this is a fact about the source, not a guess. |
 | `isbn` | When present | Read from an `ISBN-13: ...` line embedded in the product description. Present on most books; absent on some (e.g. Pathfinder Society Scenarios, which are not sold with an ISBN at all). |

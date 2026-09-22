@@ -12,6 +12,9 @@ from parsing the product page's HTML (a schema.org JSON-LD block, plus a
 scripts for.
 
 What this fills in, and why not more:
+- title: the product's own name, exactly as store.paizo.com titles it (same
+  convention the official DriveThruRPG add-on uses — the source's own title,
+  not a cleaned-up guess at what belongs in it).
 - tags: the confirmed SKU from the product page (see README — Grimoire has
   no dedicated product-code field yet, so this is the documented fallback).
 - publisher: hardcoded to "Paizo Inc." store.paizo.com sells only Paizo's own
@@ -160,6 +163,7 @@ def fetch(identity: str, addon_dir: str) -> dict:
 
     m = _JSONLD_PRODUCT_RE.search(page_html)
     description = ""
+    product: dict = {}
     if m:
         try:
             product = json.loads(m.group(1))
@@ -170,6 +174,9 @@ def fetch(identity: str, addon_dir: str) -> dict:
             sku = product.get("sku")
 
     fields = {}
+    name = product.get("name")
+    if name:
+        fields["title"] = name
     if sku:
         fields["tags"] = [sku]
     fields["publisher"] = "Paizo Inc."

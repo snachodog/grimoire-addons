@@ -1,22 +1,28 @@
 {
     "version": 1,
-    "generated": "2026-09-22T21:49:00Z",
+    "generated": "2026-09-22T22:04:13Z",
     "addons": [
         {
             "id": "paizo-product-code",
             "name": "Paizo Product Code",
             "kind": "scraper",
             "target": "book",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "path": "scrapers/paizo-product-code/paizo-product-code.yml",
             "requires_script": true,
-            "sha256": "e45dcbbb0462f9c825083990f4777252c32ef48da96ebc5e6b267bdc1aaa2367",
-            "description": "Looks up a Paizo product by its own product code (PZO9001, PZOPSS0501E, and similar) and fills in publisher, ISBN, and authors where the source credits one.",
+            "sha256": "6527926e88465bc2e3d9d363118cb9a04040f91da22acac5c1303b744ab94a41",
+            "description": "Looks up a Paizo product by its own product code (PZO9001, PZOPSS0501E, and similar) and fills in the official title, publisher, ISBN, and authors where the source credits one.",
             "homepage": "https://store.paizo.com",
             "author": "snachodog",
             "grimoire_min_version": "1.7.1",
-            "script_sha256": "7170d7a93f0f04c0d1550c403349372486d8b1e07a68ab99460fcf44920d6a62",
+            "script_sha256": "2d4e39763910da444ec1aac564aba26c508385cdc75bb85807e5667abdc8bad8",
             "changelog": [
+                {
+                    "version": "1.1.0",
+                    "changes": [
+                        "Map the product's official title from the source"
+                    ]
+                },
                 {
                     "version": "1.0.1",
                     "changes": [
