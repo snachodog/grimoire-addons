@@ -1,0 +1,30 @@
+id: paizo-product-code
+name: Paizo Product Code
+version: 1.0.1
+kind: scraper
+target: book
+description: >-
+  Looks up a Paizo product by its own product code (PZO9001, PZOPSS0501E,
+  and similar) and fills in publisher, ISBN, and — where the source credits
+  one — authors. The code itself is stored in tags until Grimoire has a
+  dedicated product-code field (see README).
+homepage: https://store.paizo.com
+author: snachodog
+attribution: Data from the Paizo Store (store.paizo.com)
+grimoire_min_version: 1.7.1
+
+# store.paizo.com has no JSON API — every field comes from parsing product
+# page HTML, which YAML's declarative "source" cannot do. See scripts.md.
+script:
+  entry: paizo-product-code.py
+  timeout: 60
+
+# Fields exist here only to carry identity_pattern, which lets a user paste
+# a store.paizo.com product link straight to the review step. The script
+# does its own searching and does not use "fields" for scoring — the
+# manifest schema still needs the "search" block to expose the pattern.
+# (backend/addons/manifest.py's SearchSpec — "a script-backed add-on ...
+# may declare a search block purely to carry identity_pattern and leave
+# this empty".)
+search:
+  identity_pattern: "store\\.paizo\\.com/([a-z0-9][a-z0-9-]*)/?"
