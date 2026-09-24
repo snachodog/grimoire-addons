@@ -1,22 +1,29 @@
 {
     "version": 1,
-    "generated": "2026-09-24T18:11:39Z",
+    "generated": "2026-09-24T18:30:01Z",
     "addons": [
         {
             "id": "paizo-product-code",
             "name": "Paizo Product Code",
             "kind": "scraper",
             "target": "book",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "path": "scrapers/paizo-product-code/paizo-product-code.yml",
             "requires_script": true,
-            "sha256": "d3c3dcd357047a84c64c58778df83e8eabb78b72406fe3ca184ac06fdda1870a",
-            "description": "Looks up a Paizo product by its own product code (PZO9001, PZOPSS0501E, and similar) and fills in the official title, publisher, ISBN, product code, and authors where the source credits one.",
+            "sha256": "32210cafd0e695a2f5597e4df1de74e50dd4e4c3607eb6ee59de0053468c1797",
+            "description": "Looks up a Paizo product by its own product code (PZO9001, PZOPSS0501E, and similar) and fills in the official title, publisher, ISBN, product code, description, and authors where the source credits one.",
             "homepage": "https://store.paizo.com",
             "author": "snachodog",
             "grimoire_min_version": "1.7.2",
-            "script_sha256": "57efcbd03e7facbad3bcac90231b7be500ab283857f4f9610f2a07b5b90a3fe1",
+            "script_sha256": "c72f1ec66c2aac68b5fea8550e94e5054b38e46f0e284e536c951aad9d1134f3",
             "changelog": [
+                {
+                    "version": "1.3.0",
+                    "changes": [
+                        "Map the store's product description",
+                        "Documented that authors were already conditional on the source crediting one (Adventure Path chapters only) — no behavior change there"
+                    ]
+                },
                 {
                     "version": "1.2.0",
                     "changes": [
