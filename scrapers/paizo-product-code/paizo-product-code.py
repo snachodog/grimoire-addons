@@ -19,6 +19,9 @@ What this fills in, and why not more:
   dedicated product-code field (shipped in 1.7.2 — see README).
 - publisher: hardcoded to "Paizo Inc." store.paizo.com sells only Paizo's own
   first-party line, so this is a fact about the source, not a guess.
+- description: the store's own product description, taken verbatim from the
+  page's schema.org/Product JSON-LD block (already decoded, no HTML to
+  strip). Same text the ISBN and author patterns below search within.
 - isbn: read from an "ISBN-13: ..." line embedded in the description, when
   present. Reliable when it appears.
 - authors: read from a "by <name(s)>" line immediately after the product's
@@ -180,6 +183,8 @@ def fetch(identity: str, addon_dir: str) -> dict:
     if sku:
         fields["product_code"] = sku
     fields["publisher"] = "Paizo Inc."
+    if description:
+        fields["description"] = description.replace("\r\n", "\n").strip()
 
     isbn_match = _ISBN_RE.search(description)
     if isbn_match:

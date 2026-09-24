@@ -1,12 +1,12 @@
 id: paizo-product-code
 name: Paizo Product Code
-version: 1.2.0
+version: 1.3.0
 kind: scraper
 target: book
 description: >-
   Looks up a Paizo product by its own product code (PZO9001, PZOPSS0501E,
   and similar) and fills in the official title, publisher, ISBN, product
-  code, and — where the source credits one — authors.
+  code, description, and — where the source credits one — authors.
 homepage: https://store.paizo.com
 author: snachodog
 attribution: Data from the Paizo Store (store.paizo.com)
