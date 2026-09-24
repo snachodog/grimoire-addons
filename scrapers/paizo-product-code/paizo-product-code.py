@@ -15,8 +15,8 @@ What this fills in, and why not more:
 - title: the product's own name, exactly as store.paizo.com titles it (same
   convention the official DriveThruRPG add-on uses — the source's own title,
   not a cleaned-up guess at what belongs in it).
-- tags: the confirmed SKU from the product page (see README — Grimoire has
-  no dedicated product-code field yet, so this is the documented fallback).
+- product_code: the confirmed SKU from the product page, into Grimoire's
+  dedicated product-code field (shipped in 1.7.2 — see README).
 - publisher: hardcoded to "Paizo Inc." store.paizo.com sells only Paizo's own
   first-party line, so this is a fact about the source, not a guess.
 - isbn: read from an "ISBN-13: ..." line embedded in the description, when
@@ -178,7 +178,7 @@ def fetch(identity: str, addon_dir: str) -> dict:
     if name:
         fields["title"] = name
     if sku:
-        fields["tags"] = [sku]
+        fields["product_code"] = sku
     fields["publisher"] = "Paizo Inc."
 
     isbn_match = _ISBN_RE.search(description)

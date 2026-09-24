@@ -42,7 +42,7 @@ distinction exists.
 | Field | Filled? | Notes |
 | --- | --- | --- |
 | `title` | Yes | The product's own name, exactly as store.paizo.com titles it — same convention the official DriveThruRPG add-on uses (the source's own title, not a cleaned-up guess). Some product names include the source's own format tag, e.g. "... (OGL) PDF"; left as-is rather than stripped. |
-| Product code | via `tags` | See "Product code field" below — the real field has not shipped yet. |
+| `product_code` | Yes | The confirmed SKU from the product page (e.g. `PZO9001`). |
 | `publisher` | Always `Paizo Inc.` | store.paizo.com sells only Paizo's own first-party line, so this is a fact about the source, not a guess. |
 | `isbn` | When present | Read from an `ISBN-13: ...` line embedded in the product description. Present on most books; absent on some (e.g. Pathfinder Society Scenarios, which are not sold with an ISBN at all). |
 | `authors` | Only for Adventure Path chapters | Adventure Path volumes open their description with `Chapter N: "Title"` followed by `by <author>` — a reliable, checkable pattern. **Core rulebooks and Pathfinder Society Scenarios do not credit an author anywhere in their store description.** Left unset for those rather than guessed. |
@@ -51,15 +51,15 @@ distinction exists.
 
 ## Product code field
 
-At the time of writing, [issue #479](https://github.com/hunter-read/grimoire/issues/479)
-("Add a 'Product code' field") is still **open**, and `MAPPABLE_BOOK_FIELDS`
-in `backend/addons/manifest.py` on `main` does not include a product-code or
-SKU field. This add-on therefore writes the confirmed code into `tags`
-(e.g. `tags: ["PZO9001"]`), the same workaround the `level-range-field`
-project uses.
+Grimoire 1.7.2 shipped the real `product_code` field
+([issue #479](https://github.com/hunter-read/grimoire/issues/479)). This
+add-on maps the confirmed SKU there directly (`grimoire_min_version: 1.7.2`).
 
-**Once the real field lands, this add-on should be updated to map the code
-there instead of `tags`, and the version bumped.**
+Versions before 1.2.0 wrote the code into `tags` instead, as a workaround
+while the field didn't exist yet. If you installed an earlier version and
+already have books with a `PZO...`-style tag from this add-on, those need a
+one-time manual move into `product_code` — this add-on does not migrate
+existing tags on update, it only affects new lookups.
 
 ## Known gaps — codes that will not resolve
 
